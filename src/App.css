@@ -26,10 +26,10 @@ background-color: rgba(0, 0, 0, 0.05);
 gap: 20px;
 }
 .SideMenu{
-    height: 100vh;
+    height: 100%;
 }
 .SideMenuVertical{
-    height: 100vh;
+    height: 100%;
 }
 .PageContent{
     /* padding: 0 20px; */

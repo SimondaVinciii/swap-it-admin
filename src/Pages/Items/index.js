@@ -1,10 +1,26 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Avatar, Space, Table, Typography, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { getItems } from "../../API";
 
 function Items() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
+
+  // Status translation and color mapping
+  const statusMap = {
+    'Available': { 
+      text: 'Sẵn sàng', 
+      color: 'green' 
+    },
+    'Pending': { 
+      text: 'Đang chờ', 
+      color: 'orange' 
+    },
+    'Sold': { 
+      text: 'Đã giao dịch', 
+      color: 'red' 
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -16,55 +32,74 @@ function Items() {
 
   return (
     <Space style={{ width: "70vw", padding: '0 20px' }} size={20} direction="vertical">
-      <Typography.Title level={4}>Item</Typography.Title>
+      <Typography.Title level={4}>Danh sách sản phẩm</Typography.Title>
       <Table
         loading={loading}
         columns={[
           {
-            title: "Photo",
+            title: "Ảnh",
             dataIndex: "item_images",
-           
-            render: (text, record) => <img src={record.item_images[0]} alt={record.name} style={{ width: 50, height: 50 }} />,
+            render: (text, record) => (
+              <img 
+                src={record.item_images[0]} 
+                alt={record.item_name} 
+                style={{ width: 50, height: 50, objectFit: 'cover', borderRadius: '4px' }} 
+              />
+            ),
           },
-          
           {
-            title: "Name",
+            title: "Tên sản phẩm",
             dataIndex: "item_name",
+            render: (name) => <Typography.Text strong>{name}</Typography.Text>
           },
           {
-            title: "Price",
+            title: "Giá",
             dataIndex: "price",
-            render: (value) => <span>{value} SW</span>,
+            render: (value) => <Typography.Text type="success">{value} SW</Typography.Text>,
           },
-        
           {
-            title: "Quantity",
+            title: "Số lượng",
             dataIndex: "quantity",
+            render: (quantity) => <Typography.Text>{quantity}</Typography.Text>
           },
-
           {
-            title: "Address",
+            title: "Địa chỉ",
             dataIndex: "address",
+            ellipsis: true,
           },
           {
-            title: "Status",
+            title: "Trạng thái",
             dataIndex: "item_status",
+            render: (status) => {
+              const statusInfo = statusMap[status] || { text: status, color: 'default' };
+              return (
+                <Tag color={statusInfo.color}>
+                  {statusInfo.text}
+                </Tag>
+              );
+            }
           },
           {
-            title: "Owner",
+            title: "Chủ sở hữu",
             dataIndex: "user_name",
+            render: (userName) => <Typography.Text>{userName}</Typography.Text>
           },
           {
-            title: "Category",
+            title: "Danh mục",
             dataIndex: "category_name",
+            render: (categoryName) => <Typography.Text>{categoryName}</Typography.Text>
           },
         ]}
         dataSource={dataSource}
         pagination={{
-          pageSize: 5,
+          pageSize: 10,
+          showSizeChanger: true,
+          pageSizeOptions: [5, 10, 20, 50],
         }}
-      ></Table>
+        scroll={{ x: 'max-content' }}
+      />
     </Space>
   );
 }
+
 export default Items;

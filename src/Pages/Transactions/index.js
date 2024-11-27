@@ -1,11 +1,27 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Avatar, Rate, Space, Table, Typography, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { getTransactions } from "../../API";
-import { formatDate, formatDate_DD_MM_YYYY, formatDateOnlyDate } from "../../shared/formatDate";
+import { formatDate_DD_MM_YYYY } from "../../shared/formatDate";
 
 function Transactions() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
+
+  // Status translation and color mapping
+  const statusMap = {
+    'Pending': { 
+      text: 'Đang chờ', 
+      color: 'orange' 
+    },
+    'Not Completed': { 
+      text: 'Không thành công', 
+      color: 'red' 
+    },
+    'Completed': { 
+      text: 'Đã hoàn thành', 
+      color: 'green' 
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -17,12 +33,12 @@ function Transactions() {
 
   return (
     <Space style={{ width: "70vw", padding: '0 20px' }} size={20} direction="vertical">
-      <Typography.Title level={4}>Orders</Typography.Title>
+      <Typography.Title level={4}>Danh sách giao dịch trao đổi</Typography.Title>
       <Table
         loading={loading}
         columns={[
           {
-            title: "Buyer",
+            title: "Người tạo yêu cầu",
             dataIndex: "buyer_item",
             render: (buyer_item) => (
               <Space>
@@ -32,7 +48,7 @@ function Transactions() {
             ),
           },
           {
-            title: "Buyer's Item",
+            title: "Sản phẩm của người tạo yêu cầu",
             dataIndex: "buyer_item",
             render: (buyer_item) => (
               <Space>
@@ -42,7 +58,7 @@ function Transactions() {
             ),
           },
           {
-            title: "Owner",
+            title: "Chủ sở hữu",
             dataIndex: "seller_item",
             render: (seller_item) => (
               <Space>
@@ -52,7 +68,7 @@ function Transactions() {
             ),
           },
           {
-            title: "Owner's Item",
+            title: "Sản phẩm của chủ sở hữu",
             dataIndex: "seller_item",
             render: (seller_item) => (
               <Space>
@@ -62,13 +78,21 @@ function Transactions() {
             ),
           },
           {
-            title: "Transaction Date",
+            title: "Giao dịch ngày",
             dataIndex: "transaction_date",
             render: (value) => <span>{formatDate_DD_MM_YYYY((value).toLocaleString())}</span>,
           },
           {
-            title: "Status",
+            title: "Trạng thái",
             dataIndex: "transaction_status",
+            render: (status) => {
+              const statusInfo = statusMap[status] || { text: status, color: 'default' };
+              return (
+                <Tag color={statusInfo.color}>
+                  {statusInfo.text}
+                </Tag>
+              );
+            }
           }
         ]}
         dataSource={dataSource}

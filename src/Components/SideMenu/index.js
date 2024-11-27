@@ -2,6 +2,7 @@ import {
   AppstoreOutlined,
   ShopOutlined,
   ShoppingCartOutlined,
+  SwapOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -30,19 +31,19 @@ function SideMenu() {
         selectedKeys={[selectedKeys]}
         items={[
           {
-            label: "Users",
+            label: "Danh sách người dùng",
             key: "/",
             icon: <UserOutlined />,
           },
           {
-            label: "Item",
+            label: "Danh sách sản phẩm",
             key: "/items",
             icon: <ShopOutlined />,
           },
           {
-            label: "Transaction",
+            label: "Danh sách giao dịch",
             key: "/transactions",
-            icon: <ShoppingCartOutlined />,
+            icon: <SwapOutlined />,
           },
        
         ]}

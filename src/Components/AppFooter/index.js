@@ -1,16 +1,11 @@
-import { Typography } from "antd";
+import React from 'react';
 
-function AppFooter() {
+const Footer = () => {
   return (
-    <div className="AppFooter">
-      <Typography.Link href="tel:+123456789">+123456789</Typography.Link>
-      <Typography.Link href="https://www.google.com" target={"_blank"}>
-        Privacy Policy
-      </Typography.Link>
-      <Typography.Link href="https://www.google.com" target={"_blank"}>
-        Terms of Use
-      </Typography.Link>
-    </div>
+    <footer style={{ backgroundColor: 'gray', color: 'white', padding: '4px', textAlign: 'center' }}>
+  <p>&copy; 2024 Swap It. Bản quyền thuộc về Swap It.</p>
+</footer>
   );
-}
-export default AppFooter;
+};
+
+export default Footer;

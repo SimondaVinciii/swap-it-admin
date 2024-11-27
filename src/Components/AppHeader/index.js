@@ -24,7 +24,7 @@ function AppHeader() {
       
 <img src={Logo} style={{width: '40px', margin: '0 20px'}} alt="Flowbite Logo" />
 
-      <h3>SwapIt's Dashboard</h3>
+      <h3>Swap It's Dashboard</h3>
     </div>
   );
 }
