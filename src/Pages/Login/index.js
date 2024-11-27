@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -15,8 +15,11 @@ export default function Login({ setIsAuthenticated }) {
   const screens = useBreakpoint();
   const navigate = useNavigate();
 
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
   const onFinish = (values) => {
     setIsAuthenticated(true);
+    localStorage.setItem("isAuthenticated", true);
     navigate("/");
     console.log("Received values of form: ", values);
   };

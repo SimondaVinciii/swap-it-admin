@@ -1,11 +1,22 @@
 import { Avatar, Space, Table, Typography, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { getUsers } from "../../API";
+import { useNavigate } from "react-router-dom";
 
 function Users() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
 
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
   // Premium status mapping
   const premiumStatusMap = {
     true: {

@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppHeader from "./Components/AppHeader";
 import AppFooter from "./Components/AppFooter";
 import SideMenu from "./Components/SideMenu";
@@ -7,7 +7,8 @@ import PageContent from "./Components/PageContent";
 import "./Pages/style.css";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticatedaa, setIsAuthenticated] = useState(false);
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
 
   return (
     <div className="App">

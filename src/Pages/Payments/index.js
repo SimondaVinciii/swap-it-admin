@@ -3,11 +3,22 @@ import { useEffect, useState } from "react";
 import { getPayments } from "../../API";
 import { formatDate_DD_MM_YYYY } from "../../shared/formatDate";
 import { render } from "@testing-library/react";
+import { useNavigate } from "react-router-dom";
 
 function Payments() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
 
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/payments");
+    } else {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
   useEffect(() => {
     setLoading(true);
     getPayments().then((res) => {

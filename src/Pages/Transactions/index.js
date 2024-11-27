@@ -2,11 +2,22 @@ import { Avatar, Rate, Space, Table, Typography, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { getTransactions } from "../../API";
 import { formatDate_DD_MM_YYYY } from "../../shared/formatDate";
+import { useNavigate } from "react-router-dom";
 
 function Transactions() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
 
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/transactions");
+    } else {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
   // Status translation and color mapping
   const statusMap = {
     Pending: {

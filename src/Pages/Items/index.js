@@ -1,10 +1,22 @@
 import { Avatar, Space, Table, Typography, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { getItems } from "../../API";
+import { useNavigate } from "react-router-dom";
 
 function Items() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
+
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/items");
+    } else {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
 
   // Status translation and color mapping
   const statusMap = {
