@@ -1,0 +1,5 @@
+.PageContent {
+  flex: 1; /* Chiếm toàn bộ không gian còn lại */
+  background-color: white;
+  padding: 20px; /* Khoảng cách bên trong nội dung */
+}

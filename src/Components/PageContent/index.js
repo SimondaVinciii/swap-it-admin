@@ -1,9 +1,13 @@
 import AppRoutes from "../AppRoutes";
+import "./style.css";
 
-function PageContent() {
+function PageContent({ isAuthenticated, setIsAuthenticated }) {
   return (
     <div className="PageContent">
-      <AppRoutes />
+      <AppRoutes
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
+      />
     </div>
   );
 }

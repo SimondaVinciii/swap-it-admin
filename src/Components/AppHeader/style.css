@@ -1,0 +1,6 @@
+.AppHeader {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Badge, Drawer, Image, List, Space, Typography } from 'antd';
-import { BellFilled, MailOutlined } from '@ant-design/icons';
-import { getComments, getOrders } from '../../API';
+import React, { useEffect, useState } from "react";
+import { Badge, Drawer, Image, List, Space, Typography } from "antd";
+import { BellFilled, MailOutlined } from "@ant-design/icons";
+import { getComments, getOrders } from "../../API";
 import Logo from "../../assets/img/logo.png";
+import "./style.css";
 
 function AppHeader() {
   const [comments, setComments] = useState([]);
@@ -21,8 +22,11 @@ function AppHeader() {
 
   return (
     <div className="AppHeader">
-      
-<img src={Logo} style={{width: '40px', margin: '0 20px'}} alt="Flowbite Logo" />
+      <img
+        src={Logo}
+        style={{ width: "40px", margin: "0 20px" }}
+        alt="Flowbite Logo"
+      />
 
       <h3>Swap It's Dashboard</h3>
     </div>
