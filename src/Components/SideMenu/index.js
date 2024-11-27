@@ -1,8 +1,7 @@
 import {
-  AppstoreOutlined,
   ShopOutlined,
-  ShoppingCartOutlined,
   SwapOutlined,
+  WalletOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -41,11 +40,15 @@ function SideMenu() {
             icon: <ShopOutlined />,
           },
           {
-            label: "Danh sách giao dịch",
+            label: "Danh sách giao dịch trao đổi",
             key: "/transactions",
             icon: <SwapOutlined />,
           },
-       
+          {
+            label: "Danh sách giao dịch thanh toán",
+            key: "/payments",
+            icon: <WalletOutlined />,
+          },
         ]}
       ></Menu>
     </div>
