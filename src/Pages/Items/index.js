@@ -15,11 +15,17 @@ function Items() {
   }, []);
 
   return (
-    <Space size={20} direction="vertical">
+    <Space style={{ width: "70vw", padding: '0 20px' }} size={20} direction="vertical">
       <Typography.Title level={4}>Item</Typography.Title>
       <Table
         loading={loading}
         columns={[
+          {
+            title: "Photo",
+            dataIndex: "item_images",
+           
+            render: (text, record) => <img src={record.item_images[0]} alt={record.name} style={{ width: 50, height: 50 }} />,
+          },
           
           {
             title: "Name",
@@ -28,7 +34,7 @@ function Items() {
           {
             title: "Price",
             dataIndex: "price",
-            render: (value) => <span>{value} VND</span>,
+            render: (value) => <span>{value} SW</span>,
           },
         
           {
@@ -51,12 +57,6 @@ function Items() {
           {
             title: "Category",
             dataIndex: "category_name",
-          },
-          {
-            title: "Photo",
-            dataIndex: "item_images",
-           
-            render: (text, record) => <img src={record.item_images} alt={record.name} style={{ width: 50, height: 50 }} />,
           },
         ]}
         dataSource={dataSource}

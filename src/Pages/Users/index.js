@@ -16,11 +16,18 @@ function Users() {
   }, []);
 
   return (
-    <Space size={20} direction="vertical">
+    <Space style={{ width: "70vw", padding: '0 20px' }} size={20} direction="vertical">
       <Typography.Title level={4}>Users</Typography.Title>
       <Table
         loading={loading}
         columns={[
+          {
+            title: "Photo",
+            dataIndex: "image_user",
+            render: (link) => {
+              return <Avatar src={link} size={50} />;
+            },
+          },
           
           {
             title: "Name",
@@ -31,21 +38,14 @@ function Users() {
             title: "Email",
             dataIndex: "email",
           },
-          {
-            title: "Is_premium",
-            dataIndex: "is_premium",
-          },
-          {
-            title: "Premium Expiry Date",
-            dataIndex: "premium_expiry_date",
-          },
-          {
-            title: "Photo",
-            dataIndex: "image_user",
-            render: (link) => {
-              return <Avatar src={link} />;
-            },
-          }
+          // {
+          //   title: "Is_premium",
+          //   dataIndex: "is_premium",
+          // },
+          // {
+          //   title: "Premium Expiry Date",
+          //   dataIndex: "premium_expiry_date",
+          // },
         ]}
         dataSource={dataSource}
         pagination={{
